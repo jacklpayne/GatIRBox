@@ -1,0 +1,1 @@
+- Create and test script that converts .wav IRs to 44.1k Q1.15 bit specification while pruning all-zero segments at beginning and end
