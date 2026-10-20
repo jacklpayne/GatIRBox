@@ -1,0 +1,10 @@
+# Pico build output
+pico/build/
+
+# Vivado output (rebuild with zybo/create_project.tcl)
+zybo/vivado/
+.Xil/
+*.jou
+*.log
+*.str
+dfx_runtime.txt
