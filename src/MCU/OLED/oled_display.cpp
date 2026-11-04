@@ -22,23 +22,42 @@ int main()
     uint8_t height = 64;
     uint8_t width = 128;
     SSD1309 oled(height, width);
-    oled.init();
+
+    if (!oled.init()) {
+        printf("OLED init failed!!\n");
+        return 1;
+    }
+
+    int previous_percentage = -1;
 
     while (true) {
 
         // Read pot value from ADC
         uint16_t result = adc_read();
 
-        // Convert to percentage
+        // Convert to percentage and store
         int percentage = (int)((result / 4095.0) * 100);
 
-        // Write percentage to OLED
-        char buffer[5];
-        snprintf(buffer, sizeof(buffer), "%3d%%", percentage);
+        // Avoid unnecessary SPI writes
+        if (percentage != previous_percentage) {
 
-        // Set cursor position and display percentage string
-        oled.set_cursor_pos(4, 7);
-        oled.display_string(buffer);
+            // Write percentage to OLED
+            char buffer[5];
+            snprintf(buffer, sizeof(buffer), "%3d%%", percentage);
+
+            // Set cursor position and display percentage string
+            bool success = oled.set_cursor_pos(4, 7);
+
+            if (success) {
+                success = oled.display_string(buffer);
+            }
+
+            if (success) {
+                previous_percentage = percentage;
+            } else {
+                printf("OLED display operation failed!\n");
+            }
+        }   
 
         // Short delay to ensure smooth and complete transmission to OLED
         sleep_ms(20);
