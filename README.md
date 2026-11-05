@@ -50,7 +50,8 @@ Integrate SD-card reading and OLED controls; implement MCU-to-FPGA IR transfers;
 
 ## Known Bugs / Issues
 
-TODO!! (does the fact that submodules are independant count as bug?)
+### RTL / Convolution
+* Both the output and the internal accumulator need saturation logic to prevent overflow; currently, even one multiplication of two maximally sized samples can result in a wraparound that will inject randomness (noise and THD) into the output.
 
 ## Team
 
