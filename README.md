@@ -10,6 +10,7 @@ GatIRBox is an open-source, FPGA-based guitar amplifier modeler and impulse-resp
 - **OLED and controls:** SSD1309 SPI driver and a demo that reads one potentiometer and displays its value as a percentage.
 - **SD-card reading:** Experimental FatFs code for mounting a card, listing files, reading a `.wav` file, and sending data over UART.
 - **MCU–FPGA bring-up:** Pico 2 GPIO output and Zybo Z7-10 FPGA input/LED logic, with a SystemVerilog testbench and board constraints.
+- **Zybo Codec Implementation:** Configured Zybo Z7-10 Codec to output audio data as platform for debug / test
 - **Design documentation:** An FPGA architecture draft and subsystem task lists.
 
 These components are currently independent. The three-stage convolution path, IR loading into FPGA memory, and complete audio signal chain aren't done yet.
@@ -41,12 +42,13 @@ src/FPGA/       Convolution RTL, cascade draft, and test wrapper
 src/MCU/OLED/   SSD1309 driver and potentiometer display demo
 src/MCU/SD_READER/  SD-card/FatFs experiments
 zybo-bringup/   Pico-to-Zybo GPIO communication experiment
+zybo-codec/     Codec implementation for debug
  docs/          Architecture diagram
 ```
 
 ## Next Steps
 
-Integrate SD-card reading and OLED controls; implement MCU-to-FPGA IR transfers; complete and verify the convolution cascade; connect the audio codec; and test the full signal path before developing the final PCB.
+Integrate SD-card reading and OLED controls; implement MCU-to-FPGA IR transfers; complete and verify the convolution cascade; implement I/O on audio codec; and test the full signal path before developing the final PCB.
 
 ## Known Bugs / Issues
 
