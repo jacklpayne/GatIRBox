@@ -54,7 +54,10 @@ Integrate SD-card reading and OLED controls; implement MCU-to-FPGA IR transfers;
 
 ### RTL / Convolution
 * Both the output and the internal accumulator need saturation logic to prevent overflow; currently, even one multiplication of two maximally sized samples can result in a wraparound that will inject randomness (noise and THD) into the output.
-* Audio Switch on Zybo Z7-10 codec debug implementation will occasionally add strange harmonic distortion when in an in between state. 
+* Audio Switch on Zybo Z7-10 codec debug implementation will occasionally add strange harmonic distortion when in an in between state.
+
+### MCU / OLED
+* Potentiometer display value caps at 99% rather than 100%.
 
 ## Team
 
